@@ -58,6 +58,10 @@ class SoundcloudMusicSearch extends AbstractMusicSearch{
         return 'SoundCloud';
     }
 
+    public function getAlias(){
+        return 'scservice';
+    }
+
     public function getResultTag(){
         return 'sc';
     }

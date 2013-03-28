@@ -17,7 +17,7 @@
 			
 			<service id="soundcloud_music.search_service" parent="abstract_music_seach" class="Cogipix\CogimixSoundcloudBundle\Services\SoundcloudMusicSearch">
                 <argument type="service" id="soundcloud.api"/>
-                <tag name="cogimix.service" alias="scservice"/>
+                <tag name="cogimix.plugin"/>
            </service>
     </services>
     
