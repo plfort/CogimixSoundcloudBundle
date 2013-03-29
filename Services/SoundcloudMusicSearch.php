@@ -1,5 +1,7 @@
 <?php
 namespace Cogipix\CogimixSoundcloudBundle\Services;
+use Cogipix\CogimixBundle\Model\SongResult;
+
 use Cogipix\CogimixBundle\Entity\TrackResult;
 
 use Soundcloud\Exception\InvalidHttpResponseCodeException;
@@ -18,7 +20,7 @@ class SoundcloudMusicSearch extends AbstractMusicSearch{
         $return = array();
         foreach($results as $result){
             if($result['streamable']==true){
-               $item = new TrackResult();
+               $item = new SongResult();
                $item->setTag($this->getResultTag());
                $item->setEntryId($result['id']);
                $item->setArtist($result['user']['username']);
@@ -28,6 +30,7 @@ class SoundcloudMusicSearch extends AbstractMusicSearch{
                }else{
                    $item->setThumbnails('bundles/cogimix/images/soundcloud/soundcloud-default.png');
                }
+               $item->setIcon($this->getDefaultIcon());
                $return[]=$item;
             }
         }
@@ -60,6 +63,10 @@ class SoundcloudMusicSearch extends AbstractMusicSearch{
 
     public function getAlias(){
         return 'scservice';
+    }
+
+    public function getDefaultIcon(){
+        return 'bundles/cogimixsoundcloud/images/sc-icon.png';
     }
 
     public function getResultTag(){
