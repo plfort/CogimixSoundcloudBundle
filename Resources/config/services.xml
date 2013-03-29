@@ -15,7 +15,7 @@
               <argument type="string">%soundcloud.api.secret%</argument>
 			</service>
 			
-			<service id="soundcloud_music.search_service" parent="abstract_music_seach" class="Cogipix\CogimixSoundcloudBundle\Services\SoundcloudMusicSearch">
+			<service id="soundcloud_music.search_service" parent="abstract_music_search" class="Cogipix\CogimixSoundcloudBundle\Services\SoundcloudMusicSearch">
                 <argument type="service" id="soundcloud.api"/>
                 <tag name="cogimix.plugin"/>
            </service>
