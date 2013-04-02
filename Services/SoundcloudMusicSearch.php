@@ -1,6 +1,5 @@
 <?php
 namespace Cogipix\CogimixSoundcloudBundle\Services;
-use Cogipix\CogimixBundle\Model\SongResult;
 
 use Cogipix\CogimixBundle\Entity\TrackResult;
 
@@ -20,7 +19,7 @@ class SoundcloudMusicSearch extends AbstractMusicSearch{
         $return = array();
         foreach($results as $result){
             if($result['streamable']==true){
-               $item = new SongResult();
+               $item = new TrackResult();
                $item->setTag($this->getResultTag());
                $item->setEntryId($result['id']);
                $item->setArtist($result['user']['username']);
