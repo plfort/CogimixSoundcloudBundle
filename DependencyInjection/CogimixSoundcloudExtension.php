@@ -21,7 +21,8 @@ class CogimixSoundcloudExtension extends Extension
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
-
+        $container->setParameter('soundcloud.api.key', $config['api']['key']);
+        $container->setParameter('soundcloud.api.secret', $config['api']['secret']);
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
     }
