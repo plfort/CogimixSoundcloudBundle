@@ -26,7 +26,7 @@ function soundcloudPlayer(musicPlayer) {
 		var trackId = item.entryId;
 
 		if (self.scplayer == null) {
-			console.log('first call soundcloud player');
+			loggerSoundcloud.debug('first call soundcloud player');
 			var iframe = document.getElementById('soundcloudplayer');
 			iframe.src = self.baseUrl+trackId+"&auto_play=false";
 	
@@ -43,18 +43,18 @@ function soundcloudPlayer(musicPlayer) {
 
 	};
 	this.stop = function(){
-		console.log('call stop soundcloud');	
+		loggerSoundcloud.debug('call stop soundcloud');	
 		
 		self.scplayer.pause();	
 	}
 	
 	this.pause = function(){
-		console.log('call pause soundcloud');
+		loggerSoundcloud.debug('call pause soundcloud');
 		self.scplayer.toggle();
 		
 	}
 	this.resume = function(){
-		console.log('call resume soundcloud');
+		loggerSoundcloud.debug('call resume soundcloud');
 		self.scplayer.toggle();
 	}
 	
@@ -62,13 +62,13 @@ function soundcloudPlayer(musicPlayer) {
 		try{
 		self.scplayer.play();
 		}catch(err){
-			console.log('catch error soundcloud '+err);
+			loggerSoundcloud.debug('catch error soundcloud '+err);
 		}
 	};
 	
 
 	this.onSoundcloudPlayerReady = function(player) {
-		console.log('player is ready !');
+		loggerSoundcloud.debug('player is ready !');
 		self.scplayer.bind(SC.Widget.Events.PLAY,self.onSoundcloudPlayerPlay);
 		self.scplayer.bind(SC.Widget.Events.PAUSE,self.onSoundcloudPlayerPause);
 		self.scplayer.bind(SC.Widget.Events.FINISH,self.onSoundcloudPlayerFinish);
@@ -87,14 +87,14 @@ function soundcloudPlayer(musicPlayer) {
 	};
 	
 	this.onSoundcloudPlayerFinish = function(data){
-		console.log('onSoundcloudPlayerFinish');
+		loggerSoundcloud.debug('onSoundcloudPlayerFinish');
 		self.hideWidget();
 		self.musicPlayer.unbinCursorStop();
 		self.musicPlayer.next();
 	};
 	
 	this.onSoundcloudPlayerPause = function(data){
-		console.log('onSoundcloudPlayerPause');
+		loggerSoundcloud.debug('onSoundcloudPlayerPause');
 		self.musicPlayer.unbinCursorStop();
 	};
 
@@ -103,7 +103,7 @@ function soundcloudPlayer(musicPlayer) {
 		if(self.musicPlayer.currentPlugin.name == self.name){
 			self.showWidget();
 			self.musicPlayer.enableControls();
-			console.log('onSoundcloudPlayerPlay');
+			loggerSoundcloud.debug('onSoundcloudPlayerPlay');
 			
 			//self.musicPlayer.cursor.slider("option", "max",100);
 			self.musicPlayer.cursor.progressbar();

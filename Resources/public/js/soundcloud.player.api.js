@@ -44,7 +44,7 @@
       }
       // log the events in debug mode
       if(this.debug && window.console){
-        console.log(customEventType, eventType, flashId, data);
+        loggerSoundcloud.debug(customEventType, eventType, flashId, data);
       }
 
     },
