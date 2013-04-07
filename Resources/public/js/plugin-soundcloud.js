@@ -44,23 +44,31 @@ function soundcloudPlayer(musicPlayer) {
 	};
 	this.stop = function(){
 		loggerSoundcloud.debug('call stop soundcloud');	
-		
-		self.scplayer.pause();	
+		if(self.scplayer !=null){
+			self.scplayer.pause();	
+			self.hideWidget();
+		}
 	}
 	
 	this.pause = function(){
 		loggerSoundcloud.debug('call pause soundcloud');
-		self.scplayer.toggle();
+		if(self.scplayer !=null){
+			self.scplayer.toggle();
+		}
 		
 	}
 	this.resume = function(){
 		loggerSoundcloud.debug('call resume soundcloud');
-		self.scplayer.toggle();
+		if(self.scplayer !=null){
+			self.scplayer.toggle();
+		}
 	}
 	
 	this.playHelper = function() {
 		try{
-		self.scplayer.play();
+			if(self.scplayer !=null){
+				self.scplayer.play();
+			}
 		}catch(err){
 			loggerSoundcloud.debug('catch error soundcloud '+err);
 		}
