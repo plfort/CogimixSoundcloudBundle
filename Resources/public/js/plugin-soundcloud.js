@@ -5,7 +5,7 @@ function soundcloudPlayer(musicPlayer) {
 	this.musicPlayer = musicPlayer;
 	this.currentState = null;
 	this.scplayer = null;
-	this.widgetElement = $("#soundcloudplayer");
+	this.widgetElement = $("#soundcloudWidgetContainer");
 	var self = this;
 	
 	
@@ -96,7 +96,7 @@ function soundcloudPlayer(musicPlayer) {
 	
 	this.onSoundcloudPlayerFinish = function(data){
 		loggerSoundcloud.debug('onSoundcloudPlayerFinish');
-		self.hideWidget();
+		//self.hideWidget();
 		self.musicPlayer.unbinCursorStop();
 		self.musicPlayer.next();
 	};
@@ -109,7 +109,7 @@ function soundcloudPlayer(musicPlayer) {
 	
 	this.onSoundcloudPlayerPlay = function(data){
 		if(self.musicPlayer.currentPlugin.name == self.name){
-			self.showWidget();
+			//self.showWidget();
 			self.musicPlayer.enableControls();
 			loggerSoundcloud.debug('onSoundcloudPlayerPlay');
 			

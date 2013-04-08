@@ -9,31 +9,33 @@ class SoundcloudMusicSearch extends AbstractMusicSearch{
 
     private $soundCloudApi;
     private $soundCloudQuery;
-
-    public function __construct($soundCloudApi){
+    private $resultBuilder;
+    public function __construct($soundCloudApi,$resultBuilder){
         $this->soundCloudApi=$soundCloudApi;
+        $this->resultBuilder=$resultBuilder;
     }
 
     protected function parseResponse($results){
         $return = array();
-        foreach($results as $result){
-            if($result['streamable']==true){
-               $item = new TrackResult();
-               $item->setTag($this->getResultTag());
-               $item->setEntryId($result['id']);
-               $item->setArtist($result['user']['username']);
-               $item->setTitle($result['title']);
-               if(isset($result['artwork_url']) && $result['artwork_url']!==null ){
-               $item->setThumbnails($result['artwork_url']);
-               }else{
-                   $item->setThumbnails('bundles/cogimix/images/soundcloud/soundcloud-default.png');
-               }
-               $item->setIcon($this->getDefaultIcon());
-               $return[]=$item;
-            }
-        }
+        return $this->resultBuilder->createArrayFromSoundcloudTracks($results);
+//         foreach($results as $result){
+//             if($result['streamable']==true){
+//                $item = new TrackResult();
+//                $item->setTag($this->getResultTag());
+//                $item->setEntryId($result['id']);
+//                $item->setArtist($result['user']['username']);
+//                $item->setTitle($result['title']);
+//                if(isset($result['artwork_url']) && $result['artwork_url']!==null ){
+//                $item->setThumbnails($result['artwork_url']);
+//                }else{
+//                    $item->setThumbnails('bundles/cogimix/images/soundcloud/soundcloud-default.png');
+//                }
+//                $item->setIcon($this->getDefaultIcon());
+//                $return[]=$item;
+//             }
+//         }
 
-        return $return;
+//         return $return;
     }
 
     protected function buildQuery(){

@@ -14,14 +14,20 @@
 			  <argument type="string">%soundcloud.api.key%</argument>
               <argument type="string">%soundcloud.api.secret%</argument>
 			</service>
-			
+			<service id="soundcloud_music.result_builder" class="Cogipix\CogimixSoundcloudBundle\Services\ResultBuilder">
+           </service>
 			<service id="soundcloud_music.search_service" parent="abstract_music_search" class="Cogipix\CogimixSoundcloudBundle\Services\SoundcloudMusicSearch">
                 <argument type="service" id="soundcloud.api"/>
+                <argument type="service" id="soundcloud_music.result_builder"/>
                 <tag name="cogimix.plugin"/>
            </service>
-           
+
 			<service id="soundcloud_music.jsimport_renderer" class="Cogipix\CogimixSoundcloudBundle\ViewHooks\Javascript\JavascriptImportRenderer">
                 <tag name="cogimix.jsimport_renderer"/>
+           </service>
+           
+           <service id="soundcloud_music.widget_renderer" class="Cogipix\CogimixSoundcloudBundle\ViewHooks\Widget\WidgetRenderer">
+                <tag name="cogimix.widget_renderer"/>
            </service>
     </services>
     
