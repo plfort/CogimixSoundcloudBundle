@@ -24,7 +24,7 @@ function soundcloudPlayer(musicPlayer) {
 	
 	this.play = function(item) {
 		var trackId = item.entryId;
-
+		self.setVolume(self.musicPlayer.volume);
 		if (self.scplayer == null) {
 			loggerSoundcloud.debug('first call soundcloud player');
 			var iframe = document.getElementById('soundcloudplayer');
@@ -57,10 +57,18 @@ function soundcloudPlayer(musicPlayer) {
 		}
 		
 	}
+	
 	this.resume = function(){
 		loggerSoundcloud.debug('call resume soundcloud');
 		if(self.scplayer !=null){
 			self.scplayer.toggle();
+		}
+	}
+	
+	this.setVolume = function(value){
+		loggerSoundcloud.debug('call setVolume soundcloud');
+		if(self.scplayer !=null){
+			self.scplayer.setVolume(value);
 		}
 	}
 	
