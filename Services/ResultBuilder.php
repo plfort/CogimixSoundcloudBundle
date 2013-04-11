@@ -6,7 +6,7 @@ use Cogipix\CogimixCommonBundle\ResultBuilder\ResultBuilderInterface;
 class ResultBuilder implements ResultBuilderInterface
 {
 
-    private $defaultThumbnails = 'bundles/cogimix/images/soundcloud/soundcloud-default.png';
+    private $defaultThumbnails = 'bundles/cogimixsoundcloud/images/soundcloud-default.png';
     public function createFromSoundcloudTrack($soundcloudTrack)
     {
         $item =null;
