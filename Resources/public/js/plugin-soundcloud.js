@@ -2,12 +2,16 @@ function soundcloudPlayer(musicPlayer) {
 	this.name = "Soundcloud";
 	this.baseUrl=location.protocol +"//w.soundcloud.com/player/?url=https://api.soundcloud.com/tracks/";
 	this.interval;
+	this.cancelRequested = false;
 	this.musicPlayer = musicPlayer;
 	this.currentState = null;
 	this.scplayer = null;
 	this.widgetElement = $("#soundcloudWidgetContainer");
 	var self = this;
 	
+	this.requestCancel=function(){
+		self.cancelRequested=true;
+	};
 	
 	this.hideWidget=function(){
 		if(self.widgetElement!=null){
@@ -93,11 +97,15 @@ function soundcloudPlayer(musicPlayer) {
 	};
 	
 	this.onSoundCloudPlayProgress = function(data){
-	
-		self.musicPlayer.cursor.progressbar("value",data.loadedProgress*100);
-		if(self.musicPlayer.cursor.data('isdragging')==false){
-			self.musicPlayer.cursor.slider("value",data.currentPosition );	
-			
+		if(self.cancelRequest == false){
+			self.musicPlayer.cursor.progressbar("value",data.loadedProgress*100);
+			if(self.musicPlayer.cursor.data('isdragging')==false){
+				self.musicPlayer.cursor.slider("value",data.currentPosition );	
+				
+			}
+		}else{
+			self.cancelRequest = false;
+			self.stop();
 		}
 		
 	};
