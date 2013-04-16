@@ -146,5 +146,9 @@ function soundcloudPlayer(musicPlayer) {
 
 }
 
+$("body").on('musicplayerReady',function(event){
+	event.musicPlayer.addPlugin('sc',new soundcloudPlayer(event.musicPlayer));
+});
+
 
 
