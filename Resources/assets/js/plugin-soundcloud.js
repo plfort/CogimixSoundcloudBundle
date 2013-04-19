@@ -97,14 +97,14 @@ function soundcloudPlayer(musicPlayer) {
 	};
 	
 	this.onSoundCloudPlayProgress = function(data){
-		if(self.cancelRequest == false){
+		if(self.cancelRequested == false){
 			self.musicPlayer.cursor.progressbar("value",data.loadedProgress*100);
 			if(self.musicPlayer.cursor.data('isdragging')==false){
 				self.musicPlayer.cursor.slider("value",data.currentPosition );	
 				
 			}
 		}else{
-			self.cancelRequest = false;
+			self.cancelRequested = false;
 			self.stop();
 		}
 		
@@ -124,6 +124,7 @@ function soundcloudPlayer(musicPlayer) {
 
 	
 	this.onSoundcloudPlayerPlay = function(data){
+	
 		if(self.musicPlayer.currentPlugin.name == self.name){
 			//self.showWidget();
 			self.musicPlayer.enableControls();
@@ -140,6 +141,7 @@ function soundcloudPlayer(musicPlayer) {
 				});
 			});
 		}else{
+			
 			self.stop();
 		}
 	}
