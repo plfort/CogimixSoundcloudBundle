@@ -100,8 +100,7 @@ function soundcloudPlayer(musicPlayer) {
 		if(self.cancelRequested == false){
 			self.musicPlayer.cursor.progressbar("value",data.loadedProgress*100);
 			if(self.musicPlayer.cursor.data('isdragging')==false){
-				self.musicPlayer.cursor.slider("value",data.currentPosition );	
-				
+				self.musicPlayer.cursor.slider("value",data.currentPosition/1000 );	
 			}
 		}else{
 			self.cancelRequested = false;
@@ -119,7 +118,7 @@ function soundcloudPlayer(musicPlayer) {
 	
 	this.onSoundcloudPlayerPause = function(data){
 		loggerSoundcloud.debug('onSoundcloudPlayerPause');
-		self.musicPlayer.unbinCursorStop();
+		//self.musicPlayer.unbinCursorStop();
 	};
 
 	
@@ -135,9 +134,9 @@ function soundcloudPlayer(musicPlayer) {
 		
 			
 			self.scplayer.getDuration(function(duration){
-				self.musicPlayer.cursor.slider("option", "max",duration);
+				self.musicPlayer.cursor.slider("option", "max",duration/1000);
 				self.musicPlayer.bindCursorStop(function(value) {
-					self.scplayer.seekTo(value);
+					self.scplayer.seekTo(value*1000);
 				});
 			});
 		}else{
