@@ -21,7 +21,12 @@
                 <argument type="service" id="soundcloud_music.result_builder"/>
                 <tag name="cogimix.plugin"/>
            </service>
-
+			<service id="soundcloud_music.url_search" class="Cogipix\CogimixSoundcloudBundle\Services\SoundcloudUrlSearch">
+               <argument type="service" id="soundcloud_music.result_builder"/>
+               <argument type="service" id="soundcloud.api" />
+                <tag name="cogimix.url_search" />
+           </service>
+			
 			<service id="soundcloud_music.jsimport_renderer" class="Cogipix\CogimixSoundcloudBundle\ViewHooks\Javascript\JavascriptImportRenderer">
                 <tag name="cogimix.jsimport_renderer"/>
            </service>
