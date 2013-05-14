@@ -38,13 +38,15 @@ class SoundcloudUrlSearch implements UrlSearcherInterface
                     $soundcloudUrl = new ParsedUrl($url->query['url']);
 
                     if(in_array('playlists',$soundcloudUrl->path)){
-                        $playlistTracksJson= $this->soundcloudApi->get('playlists/'.end($soundcloudUrl->path).'/tracks');
+
+                        $playlistTracksJson= $this->soundcloudApi->get('playlists/'.end($soundcloudUrl->path).'/tracks',$soundcloudUrl->query);
                         $playlistTracks=json_decode($playlistTracksJson,true);
+
                         return $this->resultBuilder->createArrayFromSoundcloudTracks($playlistTracks);
                     }
                     if(in_array('tracks',$soundcloudUrl->path)){
 
-                        $playlistTrackJson= $this->soundcloudApi->get($soundcloudUrl->url);
+                        $playlistTrackJson= $this->soundcloudApi->get($soundcloudUrl->url,$soundcloudUrl->query);
 
                         $playlistTrack=json_decode($playlistTrackJson,true);
 
