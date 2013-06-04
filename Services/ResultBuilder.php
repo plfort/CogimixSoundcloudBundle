@@ -1,5 +1,7 @@
 <?php
 namespace Cogipix\CogimixSoundcloudBundle\Services;
+use Cogipix\CogimixSoundcloudBundle\Entity\SoundcloudResult;
+
 use Cogipix\CogimixCommonBundle\Entity\TrackResult;
 
 use Cogipix\CogimixCommonBundle\ResultBuilder\ResultBuilderInterface;
@@ -11,10 +13,11 @@ class ResultBuilder implements ResultBuilderInterface
     {
         $item =null;
         if(!empty($soundcloudTrack) && isset($soundcloudTrack['streamable']) && $soundcloudTrack['streamable']==true){
-            $item = new TrackResult();
+            $item = new SoundcloudResult();
             $item->setEntryId($soundcloudTrack['id']);
             $item->setArtist($soundcloudTrack['user']['username']);
             $item->setTitle($soundcloudTrack['title']);
+            $item->setUrl($soundcloudTrack['stream_url']);
             if(isset($soundcloudTrack['artwork_url']) && $soundcloudTrack['artwork_url']!==null ){
                 $item->setThumbnails($soundcloudTrack['artwork_url']);
             }else{
