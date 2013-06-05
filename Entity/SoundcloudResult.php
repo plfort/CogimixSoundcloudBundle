@@ -21,8 +21,6 @@ class SoundcloudResult extends TrackResult
         $this->pluginProperties['url'] =$url;
     }
 
-    public function getEntryId(){
-        return $this->getId();
-    }
+
 
 }
