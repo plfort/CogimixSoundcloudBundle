@@ -16,26 +16,9 @@ class SoundcloudMusicSearch extends AbstractMusicSearch{
     }
 
     protected function parseResponse($results){
-        $return = array();
-        return $this->resultBuilder->createArrayFromSoundcloudTracks($results);
-//         foreach($results as $result){
-//             if($result['streamable']==true){
-//                $item = new TrackResult();
-//                $item->setTag($this->getResultTag());
-//                $item->setEntryId($result['id']);
-//                $item->setArtist($result['user']['username']);
-//                $item->setTitle($result['title']);
-//                if(isset($result['artwork_url']) && $result['artwork_url']!==null ){
-//                $item->setThumbnails($result['artwork_url']);
-//                }else{
-//                    $item->setThumbnails('bundles/cogimix/images/soundcloud/soundcloud-default.png');
-//                }
-//                $item->setIcon($this->getDefaultIcon());
-//                $return[]=$item;
-//             }
-//         }
 
-//         return $return;
+        return $this->resultBuilder->createArrayFromSoundcloudTracks($results);
+
     }
 
     protected function buildQuery(){
@@ -55,6 +38,23 @@ class SoundcloudMusicSearch extends AbstractMusicSearch{
             $this->logger->err($ex->getHttpBody());
             return array();
         }
+    }
+
+    protected function executePopularQuery(){
+        $this->soundCloudQuery=array();
+        $this->soundCloudQuery['filter']='streamable';
+        $this->soundCloudQuery['order']='hotness';
+        try{
+            $results= $this->soundCloudApi->get('tracks', $this->soundCloudQuery);
+
+            if($results){
+                return $this->parseResponse(json_decode($results,true));
+            }
+        }catch(InvalidHttpResponseCodeException $ex){
+            $this->logger->err($ex->getHttpBody());
+            return array();
+        }
+
     }
 
     public function getName(){
