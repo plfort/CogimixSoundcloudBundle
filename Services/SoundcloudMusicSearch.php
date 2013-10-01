@@ -66,7 +66,7 @@ class SoundcloudMusicSearch extends AbstractMusicSearch{
     }
 
     public function getDefaultIcon(){
-        return 'bundles/cogimixsoundcloud/images/sc-icon.png';
+        return '/bundles/cogimixsoundcloud/images/sc-icon.png';
     }
 
     public function getResultTag(){

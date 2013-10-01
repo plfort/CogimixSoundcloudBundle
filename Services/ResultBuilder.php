@@ -8,7 +8,7 @@ use Cogipix\CogimixCommonBundle\ResultBuilder\ResultBuilderInterface;
 class ResultBuilder implements ResultBuilderInterface
 {
 
-    private $defaultThumbnails = 'bundles/cogimixsoundcloud/images/soundcloud-default.png';
+    private $defaultThumbnails = '/bundles/cogimixsoundcloud/images/soundcloud-default.png';
     public function createFromSoundcloudTrack($soundcloudTrack)
     {
         $item =null;
@@ -51,7 +51,7 @@ class ResultBuilder implements ResultBuilderInterface
     }
 
     public function getDefaultIcon(){
-        return 'bundles/cogimixsoundcloud/images/sc-icon.png';
+        return '/bundles/cogimixsoundcloud/images/sc-icon.png';
     }
 
 }

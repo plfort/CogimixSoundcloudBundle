@@ -146,7 +146,7 @@ function soundcloudPlayer(musicPlayer) {
 	}
 
 }
-iconMap['sc'] = 'bundles/cogimixsoundcloud/images/sc-icon.png';
+iconMap['sc'] = '/bundles/cogimixsoundcloud/images/sc-icon.png';
 $("body").on('musicplayerReady',function(event){
 	event.musicPlayer.addPlugin('sc',new soundcloudPlayer(event.musicPlayer));
 });
