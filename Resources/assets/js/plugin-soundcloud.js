@@ -92,6 +92,7 @@ function soundcloudPlayer(musicPlayer) {
 		self.scplayer.bind(SC.Widget.Events.PLAY,self.onSoundcloudPlayerPlay);
 		self.scplayer.bind(SC.Widget.Events.PAUSE,self.onSoundcloudPlayerPause);
 		self.scplayer.bind(SC.Widget.Events.FINISH,self.onSoundcloudPlayerFinish);
+		self.scplayer.bind(SC.Widget.Events.ERROR,self.onSoundcloudPlayerError);
 		self.scplayer.bind(SC.Widget.Events.PLAY_PROGRESS,self.onSoundCloudPlayProgress);
 		setTimeout(self.playHelper, 1500);
 	};
@@ -111,6 +112,13 @@ function soundcloudPlayer(musicPlayer) {
 	
 	this.onSoundcloudPlayerFinish = function(data){
 		loggerSoundcloud.debug('onSoundcloudPlayerFinish');
+		//self.hideWidget();
+		self.musicPlayer.unbinCursorStop();
+		self.musicPlayer.next();
+	};
+	
+	this.onSoundcloudPlayerError = function(data){
+		loggerSoundcloud.debug('onSoundcloudPlayerError');
 		//self.hideWidget();
 		self.musicPlayer.unbinCursorStop();
 		self.musicPlayer.next();
