@@ -14,6 +14,7 @@ class ResultBuilder implements ResultBuilderInterface
         $item =null;
         if(!empty($soundcloudTrack) && isset($soundcloudTrack['streamable']) && $soundcloudTrack['streamable']==true){
             $item = new SoundcloudResult();
+           
             $item->setEntryId($soundcloudTrack['id']);
             $item->setArtist($soundcloudTrack['user']['username']);
             $item->setTitle($soundcloudTrack['title']);
@@ -26,6 +27,7 @@ class ResultBuilder implements ResultBuilderInterface
 
             $item->setTag($this->getResultTag());
             $item->setIcon($this->getDefaultIcon());
+            $item->setDuration(round($soundcloudTrack['duration']/1000));
 
         }
         return $item;
