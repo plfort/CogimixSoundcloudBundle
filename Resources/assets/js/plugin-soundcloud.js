@@ -70,9 +70,10 @@ function soundcloudPlayer(musicPlayer) {
 	}
 	
 	this.setVolume = function(value){
-		loggerSoundcloud.debug('call setVolume soundcloud');
+	
 		if(self.scplayer !=null){
-			self.scplayer.setVolume(value);
+			loggerSoundcloud.debug('call setVolume soundcloud : '+value);
+			self.scplayer.setVolume(value/100);
 		}
 	}
 	
