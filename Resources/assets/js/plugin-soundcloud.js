@@ -28,7 +28,7 @@ function soundcloudPlayer(musicPlayer) {
 	
 	this.play = function(item) {
 		var trackId = item.entryId;
-		self.setVolume(self.musicPlayer.volume);
+		
 		if (self.scplayer == null) {
 			loggerSoundcloud.debug('first call soundcloud player');
 			var iframe = document.getElementById('soundcloudplayer');
@@ -134,6 +134,7 @@ function soundcloudPlayer(musicPlayer) {
 	this.onSoundcloudPlayerPlay = function(data){
 	
 		if(self.musicPlayer.currentPlugin.name == self.name){
+			self.setVolume(self.musicPlayer.volume);
 			//self.showWidget();
 			self.musicPlayer.enableControls();
 			loggerSoundcloud.debug('onSoundcloudPlayerPlay');
