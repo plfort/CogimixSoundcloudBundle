@@ -14,13 +14,15 @@ class ResultBuilder implements ResultBuilderInterface
         $item =null;
         if(!empty($soundcloudTrack) && isset($soundcloudTrack['streamable']) && $soundcloudTrack['streamable']==true){
             $item = new SoundcloudResult();
-           
+
             $item->setEntryId($soundcloudTrack['id']);
             $item->setArtist($soundcloudTrack['user']['username']);
             $item->setTitle($soundcloudTrack['title']);
             $item->setUrl($soundcloudTrack['stream_url']);
             if(isset($soundcloudTrack['artwork_url']) && $soundcloudTrack['artwork_url']!==null ){
-                $item->setThumbnails($soundcloudTrack['artwork_url']);
+                $t = $soundcloudTrack['artwork_url'];
+                $t = str_replace('-large.', '-t300x300.', $t);
+                $item->setThumbnails($t);
             }else{
                 $item->setThumbnails($this->defaultThumbnails);
             }
@@ -32,6 +34,8 @@ class ResultBuilder implements ResultBuilderInterface
         }
         return $item;
     }
+
+
 
     public function createArrayFromSoundcloudTracks($soundcloudTracks)
     {
