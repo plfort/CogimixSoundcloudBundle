@@ -2,7 +2,6 @@
 namespace Cogipix\CogimixSoundcloudBundle\Services;
 use Cogipix\CogimixSoundcloudBundle\Entity\SoundcloudResult;
 
-use Cogipix\CogimixCommonBundle\Entity\TrackResult;
 
 use Cogipix\CogimixCommonBundle\ResultBuilder\ResultBuilderInterface;
 class ResultBuilder implements ResultBuilderInterface

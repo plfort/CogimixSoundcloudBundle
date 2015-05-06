@@ -1,7 +1,6 @@
 <?php
 namespace Cogipix\CogimixSoundcloudBundle\Services;
 
-use Cogipix\CogimixCommonBundle\Entity\TrackResult;
 use Soundcloud\Exception\InvalidHttpResponseCodeException;
 use Cogipix\CogimixCommonBundle\MusicSearch\AbstractMusicSearch;
 
